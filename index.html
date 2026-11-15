@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="JESSY SHOP — accessoires automobiles, équipements pratiques et style auto.">
 <meta name="theme-color" content="#090a0d">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="JESSY SHOP — L'univers des accessoires auto">
+<meta property="og:description" content="Accessoires automobiles, confort, technologie et entretien.">
 <title>JESSY SHOP — L'univers des accessoires auto</title>
 <style>
 :root{color-scheme:dark;--bg:#090a0d;--surface:#111318;--card:#171a21;--line:#292d36;--red:#e52d3d;--muted:#a5aab5;--white:#f7f7f8}
@@ -37,6 +40,7 @@ footer{border-top:1px solid var(--line);background:#08090c;padding:38px 0;color:
 <div class="filters"><input id="search" type="search" placeholder="Rechercher un accessoire…" aria-label="Rechercher un accessoire"><select id="category" aria-label="Filtrer par catégorie"><option value="">Toutes les catégories</option><option>Technologie</option><option>Confort</option><option>Éclairage</option><option>Organisation</option><option>Entretien</option><option>Équipement</option></select></div>
 <div class="grid" id="products"></div>
 <section class="feature" id="univers"><div><div class="kicker">JESSY SHOP</div><h3>La passion auto, jusque dans les détails.</h3><p>Notre objectif : réunir des accessoires utiles, des idées d'équipement et des solutions pratiques pour rendre chaque trajet plus agréable.</p></div><div class="featuremark">DRIVE YOUR STYLE<br>JESSY SHOP</div></section>
+<section style="margin-top:54px" id="faq"><div class="kicker">À savoir</div><h2 style="font-size:28px;margin:6px 0 18px">Avant de choisir ton accessoire.</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px"><article class="card" style="padding:18px"><strong>Compatibilité</strong><p class="desc" style="min-height:0;margin:8px 0 0">Les dimensions, connectiques et compatibilités véhicule seront précisées sur chaque fiche après validation de la référence exacte.</p></article><article class="card" style="padding:18px"><strong>Photos & caractéristiques</strong><p class="desc" style="min-height:0;margin:8px 0 0">Les photos définitives et caractéristiques seront ajoutées après vérification du produit réellement proposé.</p></article><article class="card" style="padding:18px"><strong>Commandes & livraison</strong><p class="desc" style="min-height:0;margin:8px 0 0">Les commandes ne sont pas ouvertes. Les prix, délais, frais de livraison et retours seront publiés avant le lancement.</p></article></div></section>
 </main>
 <footer id="infos"><div class="wrap foot"><div><strong>JESSY<span style="color:#e52d3d">SHOP</span></strong><div>Accessoires & équipements automobiles</div></div><div class="legal">Boutique en préparation. Les fiches produits, visuels, prix, compatibilités, stocks et délais seront confirmés avant l'ouverture des ventes. Aucun paiement ni aucune commande réelle ne sont activés pour le moment. Les informations légales et conditions de vente devront être publiées avant toute commercialisation.</div></div></footer>
 <script>
@@ -55,7 +59,7 @@ const products=[
 {name:"Kit de nettoyage microfibre auto",cat:"Entretien",icon:"✣",desc:"Des accessoires de nettoyage pour l'entretien courant des surfaces intérieures et extérieures."}
 ];
 const grid=document.getElementById("products");
-function render(){const q=document.getElementById("search").value.trim().toLocaleLowerCase("fr"),c=document.getElementById("category").value;const list=products.filter(p=>(!c||p.cat===c)&&(p.name+" "+p.desc+" "+p.cat).toLocaleLowerCase("fr").includes(q));grid.innerHTML=list.length?list.map(p=>'<article class="card"><div class="visual"><small>'+p.cat+'</small><span class="symbol" aria-hidden="true">'+p.icon+'</span></div><div class="cardbody"><div class="tag">'+p.cat+'</div><h3>'+p.name+'</h3><p class="desc">'+p.desc+'</p><div class="bottom"><span class="price">Fiche en préparation</span><span class="soon">Bientôt</span></div></div></article>').join(""):'<div class="empty">Aucun accessoire ne correspond à ta recherche.</div>'}
+function render(){const q=document.getElementById("search").value.trim().toLocaleLowerCase("fr"),c=document.getElementById("category").value;const list=products.filter(p=>(!c||p.cat===c)&&(p.name+" "+p.desc+" "+p.cat).toLocaleLowerCase("fr").includes(q));grid.innerHTML=list.length?list.map(p=>'<article class="card"><div class="visual"><small>VISUEL PROVISOIRE</small><span class="symbol" aria-hidden="true">'+p.icon+'</span></div><div class="cardbody"><div class="tag">'+p.cat+'</div><h3>'+p.name+'</h3><p class="desc">'+p.desc+'</p><div class="bottom"><span class="price">Référence à confirmer</span><span class="soon">En préparation</span></div></div></article>').join(""):'<div class="empty">Aucun accessoire ne correspond à ta recherche.</div>'}
 document.getElementById("search").addEventListener("input",render);document.getElementById("category").addEventListener("change",render);render();
 </script>
 </body></html>
