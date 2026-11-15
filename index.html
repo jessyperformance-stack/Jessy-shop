@@ -176,8 +176,8 @@ function makeProductVisual(p){
 function openDetail(index){
   const p=products[index];
   if(!p) return;
-  document.getElementById("detail-photo").src=makeProductVisual(p);
-  document.getElementById("detail-photo").alt="Visuel d’illustration : "+p.name;
+  document.getElementById("detail-photo").src=p.image;
+  document.getElementById("detail-photo").alt="Photo d’illustration : "+p.name;
   document.getElementById("detail-cat").textContent=p.cat;
   document.getElementById("detail-title").textContent=p.name;
   document.getElementById("detail-desc").textContent=p.desc;
