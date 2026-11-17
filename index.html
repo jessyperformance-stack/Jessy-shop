@@ -177,6 +177,8 @@ function visual(title,category,variant){
 const usedFallbackUrls=new Set();
 function webFallback(title){
  const t=String(title||'').toLowerCase();
+ // Les accessoires de rangement et crochets ne doivent jamais partager une photo générique.
+ if(/organiseur|rangement|sac|filet de coffre|crochet|boîte|tiroir|housse.*pneu|protection.*pneu|poubelle/.test(t)) return null;
  const rules=[
   [/carplay|android auto|ai box|adaptateur sans fil/,'https://www.cdiscount.com/pdt2/8/7/3/1/700x700/aaapx58873/rw/adaptateur-carplay-sans-fil-2.jpg'],
   [/organiseur|rangement|sac de rangement|filet de coffre|crochets de rangement|boîte de rangement|tiroir de rangement|housse.*pneu|protection.*pneu|poubelle/,'https://luxtom.pl/hpeciai/394945c177ae64aae57e7f6b06a46d1d/pol_pl_Organizer-do-bagaznika-samochodowego-torba-usztywniana-z-przegrodkami-i-pokrywa-3795_1.webp'],
