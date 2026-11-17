@@ -176,7 +176,7 @@ function visual(title,category,variant){
 }
 function imageProxy(url){
   if(!url||!/^https?:\/\//i.test(url)) return url;
-  return 'https://images.weserv.nl/?url='+encodeURIComponent(url)+'&w=1000&h=700&fit=inside&output=jpg';
+  return url;
 }
 const usedFallbackUrls=new Set();
 function webFallback(title){
@@ -224,12 +224,12 @@ cards.forEach(card=>{
         img.dataset.webFallback='1';
         const fallback=webFallback(title);
         if(fallback){img.src=imageProxy(fallback);img.alt='Photo illustrative approchante du produit : '+title;}
-        else{img.onerror=null;img.src=visual(title,category,0);img.alt='Visuel illustratif distinct du produit : '+title;}
+        else{img.onerror=null;img.removeAttribute('src');img.alt='Photo du produit temporairement indisponible : '+title;img.classList.add('image-unavailable');img.parentElement.classList.add('image-unavailable');}
       }else{
         img.onerror=null;
         img.dataset.galleryFallback='1';
-        img.src=visual(title,category,0);
-        img.alt='Visuel illustratif du produit : '+title;
+        img.removeAttribute('src');
+        img.alt='Photo du produit temporairement indisponible : '+title;
         img.classList.remove('image-unavailable');
         img.parentElement.classList.remove('image-unavailable');
         img.parentElement.removeAttribute('role');
@@ -250,14 +250,14 @@ function showPhoto(){
       photo.dataset.webFallback='1';
       const fallback=webFallback(title.textContent||'');
       if(fallback){photo.src=imageProxy(fallback);photo.alt='Photo illustrative approchante du produit : '+(title.textContent||'produit');}
-      else{photo.onerror=null;photo.src=visual(title.textContent||'Produit','JESSY SHOP',current);photo.alt='Visuel illustratif distinct du produit : '+(title.textContent||'produit');}
+      else{photo.onerror=null;photo.removeAttribute('src');photo.alt='Photo du produit temporairement indisponible : '+(title.textContent||'produit');}
       return;
     }
     photo.onerror=null;
     const card=cards.find(c=>c.querySelector('h3')?.textContent===title.textContent);
     const tag=card?.querySelector('.tag')?.textContent||'JESSY SHOP';
-    photo.src=visual(title.textContent||'Produit',tag,0);
-    photo.alt='Visuel illustratif du produit : '+(title.textContent||'produit');
+    photo.removeAttribute('src');
+    photo.alt='Photo du produit temporairement indisponible : '+(title.textContent||'produit');
     photo.style.display='block';
     photo.parentElement.classList.remove('image-unavailable');
     count.textContent='Visuel illustratif';
