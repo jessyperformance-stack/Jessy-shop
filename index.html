@@ -180,12 +180,11 @@ cards.forEach(card=>{
   const title=card.querySelector('h3')?.textContent||'Accessoire automobile';
   const category=card.querySelector('.tag')?.textContent||'JESSY SHOP';
   const index=Number(card.dataset.index);
-  const gallery=index>=0&&index<30&&realGalleries[index].length?realGalleries[index]:[0,1,2].map(v=>visual(title,category,v));
+  const gallery=index>=0&&index<realGalleries.length&&realGalleries[index].length?realGalleries[index]:[0,1,2].map(v=>visual(title,category,v));
   card.setAttribute('data-gallery',JSON.stringify(gallery));
   if(img){
     img.dataset.galleryIndex='0';
     img.dataset.galleryFallback='0';
-    img.src=gallery[0];
     img.alt='Photo du produit : '+title;
     img.classList.remove('image-unavailable');
     img.parentElement.classList.remove('image-unavailable');
@@ -201,6 +200,7 @@ cards.forEach(card=>{
         img.alt='Illustration de remplacement : '+title;
       }
     };
+    img.src=gallery[0];
   }
 });
 const overlay=document.getElementById('detail-overlay'),photo=document.getElementById('detail-photo');
