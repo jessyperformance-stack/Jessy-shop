@@ -154,7 +154,7 @@ footer{border-top:1px solid var(--line);background:#08090c;padding:38px 0;color:
 // Nettoyage des anciens libellés éventuellement conservés dans une version mise en cache.
 const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(/AliExpress/i.test(node.nodeValue))node.nodeValue=node.nodeValue.replace(/AliExpress/gi,"JESSY SHOP")}
 document.querySelectorAll("[alt],[aria-label]").forEach(el=>{for(const a of ["alt","aria-label"]){if(el.hasAttribute(a))el.setAttribute(a,el.getAttribute(a).replace(/AliExpress/gi,"JESSY SHOP"))}});
-document.querySelectorAll("#products .visual img").forEach(img=>{img.addEventListener("error",()=>{img.classList.add("image-unavailable");img.parentElement.classList.add("image-unavailable")},{once:true})});
+document.querySelectorAll("#products .card").forEach(card=>{const img=card.querySelector(".visual img"),name=card.querySelector("h3")?.textContent||"Photo du produit";if(img){img.alt=name;img.addEventListener("error",()=>{let gallery=[];try{gallery=JSON.parse(card.getAttribute("data-gallery")||"[]")}catch(e){}const fallback=gallery.find(src=>src!==img.src);if(fallback&&!img.dataset.fallbackTried){img.dataset.fallbackTried="1";img.src=fallback;return}img.classList.add("image-unavailable");img.parentElement.classList.add("image-unavailable")})}});
 const cards=[...document.querySelectorAll('#products .card')];
 const overlay=document.getElementById('detail-overlay'), photo=document.getElementById('detail-photo');
 const title=document.getElementById('detail-title'), desc=document.getElementById('detail-description'), cat=document.getElementById('detail-category');
